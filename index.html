@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2025 · 关西秋日旅行</title>
+<style>
+:root{
+  --red:#b94338;--orange:#d56b32;--cream:#fffaf3;--paper:#fff;
+  --text:#403b36;--muted:#8a8178;--line:#eadfd3;--green:#657d63;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#faf7f1;color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",
+  "Helvetica Neue",Arial,sans-serif;line-height:1.65;
+}
+.hero{
+  height:470px;position:relative;color:#fff;display:flex;align-items:flex-end;
+  overflow:hidden;background:#6b3027;
+}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(45,22,16,.58),rgba(45,22,16,.08) 48%,rgba(45,22,16,.72)),
+    url("hero.jpg") center 42%/cover;
+}
+.nav{
+  position:absolute;z-index:2;top:0;left:0;right:0;padding:20px 5%;
+  display:flex;align-items:center;gap:24px;text-shadow:0 2px 8px #422;
+}
+.logo{font-size:25px;font-weight:800;margin-right:auto}
+.nav a{color:#fff;text-decoration:none;font-size:13px;font-weight:700;margin:0 7px}
+.badge{border:1px solid #fff;border-radius:30px;padding:7px 12px;font-size:12px}
+.heroText{position:relative;z-index:1;padding:0 7% 42px;text-shadow:0 2px 10px #321}
+.heroText>div{font-size:14px;font-weight:800;letter-spacing:2px}
+.hero h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(55px,10vw,98px);line-height:.9;margin:11px 0 18px;
+  letter-spacing:-4px;
+}
+.hero p{font-weight:750;margin:5px 0;font-size:18px}
+.hero .route{font-size:20px;margin-top:13px}
+main{max-width:1180px;margin:auto;padding:35px 20px 60px}
+.section{margin-bottom:42px}
+.title{color:var(--red);display:flex;gap:12px;align-items:baseline;margin-bottom:16px}
+.title b{font-size:24px}.title span{font-size:13px;color:var(--muted)}
+.grid{display:grid;gap:16px}
+.overview{grid-template-columns:1.3fr .7fr}
+.box,.day,.flightbox,.card,.photo-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:21px;
+  box-shadow:0 7px 25px rgba(104,65,38,.07);
+}
+.routebox{padding:24px;background:linear-gradient(135deg,#fff7ed,#fff)}
+.routebox>b{color:var(--red)}
+.routeLine{min-height:150px;display:flex;align-items:center;justify-content:center;gap:15px}
+.city{
+  background:#fff;border:1px solid #ead2c5;border-radius:16px;padding:14px 18px;
+  text-align:center;min-width:125px;
+}
+.city strong{display:block;color:var(--red)}.city small{color:var(--muted)}
+.arrow{font-size:24px;color:var(--orange)}
+.budget{
+  padding:25px;background:linear-gradient(135deg,#f4e5d5,#fff4e8);
+  display:flex;justify-content:center;flex-direction:column;
+}
+.budget small{font-weight:800;color:#8b5b43}
+.budget strong{font-size:48px;color:var(--red);margin:5px 0}
+.budget em{font-style:normal;color:#876f63}
+.flightbox{padding:20px}
+.flight{
+  display:grid;grid-template-columns:78px 1fr 1.5fr;gap:12px;
+  padding:14px 0;border-bottom:1px dashed #e6d8ca;
+}
+.flight:last-child{border:0}
+.date{font-weight:800;color:var(--red)}.time{font-weight:750}
+.muted{color:#81766e}
+.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:14px;padding-bottom:4px}
+.tab{
+  border:0;border-radius:99px;padding:10px 16px;background:#f4ece3;
+  color:#7b4b3d;font-weight:750;cursor:pointer;white-space:nowrap;
+}
+.tab.active{background:var(--red);color:#fff}
+.day{padding:23px}
+.dayhead{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.day h2{margin:4px 0 18px;color:#56352d}
+.tag{background:#f8eee5;color:#9a5544;border-radius:99px;padding:6px 10px;font-size:11px;font-weight:800;white-space:nowrap}
+.event{display:grid;grid-template-columns:92px 1fr;gap:10px;margin:0 0 13px;line-height:1.6}
+.event time{font-weight:800;color:var(--red)}
+.event a{color:#a94c3e;text-decoration:none;border-bottom:1px dotted #a94c3e}
+.photos{
+  display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;
+  gap:8px;height:430px;
+}
+.photos img{
+  width:100%;height:100%;object-fit:cover;border-radius:14px;
+  display:block;cursor:pointer;transition:transform .25s ease;
+}
+.photos img:hover{transform:scale(1.01)}
+.photos img:first-child{grid-row:span 2}
+.photo-card{padding:10px}
+.lower{grid-template-columns:1fr 1fr}
+.card{padding:21px}.card h3{margin:0 0 14px;color:var(--red)}
+.expense{
+  display:grid;grid-template-columns:1fr auto;gap:12px;padding:9px 0;
+  border-bottom:1px dashed #e6ddd4;
+}
+.expense b{color:#9c4b3e}
+.check{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.check label{background:#faf6f1;border-radius:10px;padding:9px;font-size:13px;color:#665d57}
+.tip{margin-top:14px;padding:12px;border-radius:12px;background:#fff5df;color:#9a5d34;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#fbefe5;color:#98513f}
+.total{background:#fff0e6;font-weight:800}
+.note{margin-top:14px;color:var(--muted);font-size:13px}
+footer{text-align:center;color:#978b82;padding:20px 15px 50px}
+.heart{font-size:27px;color:var(--red)}
+@media(max-width:900px){
+  .navlinks{display:none}.overview,.lower{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  main{padding:25px 13px 45px}.hero{height:430px}
+  .hero h1{font-size:58px}.routeLine{min-height:125px;gap:5px}
+  .city{min-width:90px;padding:10px 6px}.flight{grid-template-columns:60px 1fr}
+  .flight .route{grid-column:2}.photos{height:520px;grid-template-columns:1fr 1fr}
+  .photo-card{padding:7px}.event{grid-template-columns:76px 1fr}.day{padding:17px}
+  .check{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <nav class="nav">
+    <div class="logo">🍁 KANSAI TRIP</div>
+    <div class="navlinks">
+      <a href="#overview">总览</a><a href="#flights">航班</a><a href="#days">行程</a>
+      <a href="#photos">照片</a><a href="#budget">开销</a><a href="#prep">准备</a>
+    </div>
+    <div class="badge">Travel · 2025</div>
+  </nav>
+  <div class="heroText">
+    <div>OSAKA · KYOTO · AUTUMN TRIP</div>
+    <h1>2025 🍁 关西</h1>
+    <p>11.28 — 12.03</p>
+    <p>6 DAYS · 5 NIGHTS</p>
+    <p class="route">香港 → 大阪 · 京都 · USJ → 大阪</p>
+  </div>
+</header>
+
+<main>
+<section class="section" id="overview">
+  <div class="title"><b>01 Trip Overview</b><span>行程概览</span></div>
+  <div class="grid overview">
+    <div class="box routebox">
+      <b>OSAKA → KYOTO → OSAKA</b>
+      <div class="routeLine">
+        <div class="city"><strong>大阪</strong><small>11.28–11.29</small></div>
+        <div class="arrow">→</div>
+        <div class="city"><strong>京都</strong><small>11.29–12.01</small></div>
+        <div class="arrow">→</div>
+        <div class="city"><strong>大阪</strong><small>12.01–12.03</small></div>
+      </div>
+    </div>
+    <div class="budget">
+      <small>旅行目标 · 人均</small>
+      <strong>¥7,000</strong>
+      <em>机票 · 酒店 · USJ · 温泉 · 交通 · 餐饮</em>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="flights">
+  <div class="title"><b>02 Flights</b><span>航班信息</span></div>
+  <div class="flightbox">
+    <div class="flight">
+      <div class="date">11.28</div><div class="time">09:55 出发</div>
+      <div class="muted route">香港 → 大阪（关西） · UO850</div>
+    </div>
+    <div class="flight">
+      <div class="date">12.03</div><div class="time">17:10 出发</div>
+      <div class="muted route">大阪（关西） → 香港 · UO899</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="days">
+  <div class="title"><b>03 Daily Itinerary</b><span>每日行程</span></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="day"></div>
+</section>
+
+<section class="section" id="photos">
+  <div class="title"><b>04 Travel Photos</b><span>旅行瞬间</span></div>
+  <div class="photo-card">
+    <div class="photos">
+      <img src="usj-gate.jpg" alt="旅行照片">
+      <img src="usj-mario.jpg" alt="旅行照片">
+      <img src="usj-group.jpg" alt="旅行照片">
+      <img src="autumn.jpg" alt="旅行照片">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="budget">
+  <div class="title"><b>05 Budget</b><span>开销</span></div>
+  <div class="grid lower">
+    <div class="card">
+      <h3>预算账单</h3>
+      <table>
+        <thead><tr><th>项目</th><th>预计</th><th>实际</th></tr></thead>
+        <tbody>
+          <tr><td>往返机票</td><td>¥2,500</td><td>¥1,582</td></tr>
+          <tr><td>大阪五晚</td><td>¥1,500</td><td>¥1,276 + 182</td></tr>
+          <tr><td>护照签证</td><td>¥300</td><td>¥183</td></tr>
+          <tr><td>境外流量</td><td>¥50</td><td>¥34</td></tr>
+          <tr><td>USJ门票</td><td>¥800</td><td>¥424 + 303 = 727</td></tr>
+          <tr><td>USJ魔法袍</td><td>¥75</td><td>¥97.5</td></tr>
+          <tr><td>空庭温泉</td><td>¥250</td><td>¥247</td></tr>
+          <tr><td>平日交通</td><td>¥450</td><td>¥380</td></tr>
+          <tr><td>餐饮</td><td>¥1,200</td><td>肉剧场72 / 京都午饭78 / 便利店17.5 / 鳗鱼饭194.5 / 咖喱饭50 / 烤肉136</td></tr>
+          <tr><td>其他</td><td>—</td><td>存包5.7 / 抹茶购物265 / 酒店税45.5</td></tr>
+          <tr><td>公帐现金 7w日元</td><td>¥3,392.41</td><td>¥848</td></tr>
+          <tr><td>日元现金 2w日元</td><td>¥1,000</td><td>¥980</td></tr>
+          <tr><td>国内打车</td><td>¥250 + 255</td><td>¥114</td></tr>
+          <tr class="total"><td>总和</td><td>¥8,900</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>已记录信息</h3>
+      <div class="expense"><span>机酒人均</span><b>¥2,770</b></div>
+      <div class="expense"><span>交通费用</span><b>¥7,500日元</b></div>
+      <div class="expense"><span>交通折合</span><b>¥317.90</b></div>
+      <div class="expense"><span>酒店总计</span><b>¥105,018日元</b></div>
+      <div class="expense"><span>酒店折合</span><b>¥4,451.37</b></div>
+      <p class="note">原预算表预计总和 ¥8,900，但旅行目标是尽量控制在人均 ¥7,000 左右。</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="prep">
+  <div class="title"><b>06 Before You Go</b><span>出发前准备</span></div>
+  <div class="grid lower">
+    <div class="card">
+      <h3>Checklist</h3>
+      <div class="check">
+        <label><input type="checkbox"> 护照</label>
+        <label><input type="checkbox"> 泳衣</label>
+        <label><input type="checkbox"> 充电器</label>
+        <label><input type="checkbox"> 电宝</label>
+        <label><input type="checkbox"> 相机 / 拍立得</label>
+        <label><input type="checkbox"> 日币 & 港币</label>
+        <label><input type="checkbox"> 流量卡</label>
+        <label><input type="checkbox"> 纸质机酒行程单</label>
+        <label><input type="checkbox"> 抓阄用小卡</label>
+      </div>
+      <div class="tip">⚠️ 电宝、相机电池、平板不可托运，需随身携带。</div>
+    </div>
+    <div class="card">
+      <h3>出发前链接</h3>
+      <div class="expense"><span>USJ APP · 1手机绑定4人门票</span><a href="http://xhslink.com/a/CLHKZUc7b3jeb" target="_blank">打开 ↗</a></div>
+      <div class="expense"><span>香港离境退税</span><a href="http://xhslink.com/o/9fSxz5CFOg4" target="_blank">打开 ↗</a></div>
+      <div class="expense"><span>入境电子 QR</span><a href="http://xhslink.com/o/4LyJoN0vKHn" target="_blank">打开 ↗</a></div>
+      <div class="expense"><span>谷歌地图</span><b>开启位置共享</b></div>
+      <div class="expense"><span>流量卡</span><b>落地前准备插卡</b></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="heart">Have a nice trip ♡</div>
+  <p>2025 关西秋日旅行　|　大阪 · 京都 · USJ　|　11.28 — 12.03</p>
+</footer>
+
+<script>
+const D = [
+["11.28","周五","香港 → 大阪 · 心斋桥","大阪",[
+"06:00｜起床",
+"上午｜🛂 深圳湾口岸会面，一起过关；打车去香港机场（现金港币）",
+"09:55｜✈️ 香港 → 大阪",
+"飞机上｜🪞 化妆",
+"飞机上｜📝 提前填写纸质版 Visit Japan Web 申报（kjj带笔）",
+"抵达后｜🚆 关西机场 → 酒店（南出口扶梯🛗），约60分钟直达；约 ¥1,000",
+"入住后｜📱 发房间号给 USJ 魔法袍",
+"约16:30｜🌃 前往心斋桥",
+"晚餐｜🥩 步行20分钟到肉剧场",
+"准备｜💴 准备一些零钱现金，京都参观神社使用",
+]],
+["11.29","周六","下鸭神社 · 哲学之道 · 永观堂","京都",[
+"08:00｜🚇 酒店 → 下鸭神社，约60分钟，约 ¥730",
+"上午｜⛩️ 下鸭神社；现场买票 ¥500 现金",
+"之后｜🍁 哲学之道",
+"下鸭神社 → 银阁寺｜🚌 可考虑打车；公交约30分钟 / ¥230",
+"之后｜⛩️ 银阁寺",
+"银阁寺 → 永观堂｜🚶 步行约25分钟",
+"之后｜🍁 永观堂，门票 ¥600",
+"之后｜⛩️ 步行5分钟到南禅寺",
+"晚饭｜🍱 山科站猪排，尽量18:30到店排队",
+"回酒店｜🪄 前台领取魔法袍",
+]],
+["11.30","周日","清水寺 · 八坂神社 · 二三年阪 · 空庭温泉","京都",[
+"08:00｜🪞 出发；记得携带卸妆品、面膜、泳衣",
+"上午｜⛩️ 酒店 → 清水寺（不爬坡路线）",
+"之后｜⛩️ 清水寺 → 八坂神社、二三年阪",
+"途中｜🍵 抹茶",
+"途中｜🍱 鳗鱼饭",
+"途中｜🍙 小吃",
+"途中｜🐰 米菲的店",
+"下午｜🛍️ 自由行动 · 京都站 shopping",
+"18:00｜♨️ 前往空庭温泉",
+"19:30｜🛁 私汤",
+]],
+["12.01","周一","难波 → USJ","大阪",[
+"11:00前｜慢慢出门，前两天暴走辛苦了",
+"中午｜🍜 到难波吃午饭，带魔法袍出门",
+"午饭｜蘸面 / 大阪烧",
+"14:00｜🌍 难波 → USJ，约30分钟 / ¥400",
+"下午～晚上｜🎢 USJ",
+"晚餐｜🏮 USJ附近居酒屋，约7分钟 / ¥180",
+"回酒店｜🚇 约30分钟 / ¥190",
+]],
+["12.02","周二","USJ 一日游","USJ",[
+"全天｜🎢 环球影城一整天",
+"全天｜加油特种兵们 (｡ì _ í｡)",
+]],
+["12.03","周三","大阪城 · 通天阁 → 回程","大阪",[
+"09:30前｜🧳 收拾好行李并出门",
+"上午｜🏯 酒店 → 大阪城，约35分钟 / ¥240",
+"之后｜🗼 大阪城 → 通天阁，约25分钟 / ¥240",
+"午饭｜🐙 章鱼小丸子 / 🍢 关东煮",
+"14:00｜🧳 回酒店取行李，前往机场",
+"17:25｜✈️ 飞机，旅行结束啦",
+]]
+];
+
+const tabs=document.getElementById("tabs"),day=document.getElementById("day");
+D.forEach((d,i)=>{
+  const b=document.createElement("button");
+  b.className="tab"+(i===0?" active":"");
+  b.textContent=d[0];
+  b.onclick=()=>show(i);
+  tabs.appendChild(b);
+});
+function linkify(s){
+  const urls={
+    "USJ攻略":"http://xhslink.com/a/CLHKZUc7b3jeb",
+    "下鸭神社攻略":"http://xhslink.com/o/AhVzhZsA77N",
+    "哲学之道风景一览":"http://xhslink.com/o/6bam4eDwJnw",
+    "清水寺路线":"http://xhslink.com/o/l9gKhqyyDw",
+    "抹茶":"http://xhslink.com/a/zxP65HePsxmeb",
+    "鳗鱼饭":"http://xhslink.com/a/uUzWoj913Sleb",
+    "小吃":"http://xhslink.com/a/PrsBE7fGXxmeb",
+    "米菲的店":"http://xhslink.com/o/3u2paevMX17",
+    "肉剧场":"http://xhslink.com/a/gy0MgsRmX7jeb",
+    "蘸面":"http://xhslink.com/a/qgA6XbJ3jckeb",
+    "大阪烧":"http://xhslink.com/a/WBsAAhwJldkeb",
+    "居酒屋":"http://xhslink.com/a/O8QteP9qNTrgb",
+    "机场购物优惠":"http://xhslink.com/o/3g5tdURSVrY",
+    "机场盖章":"http://xhslink.com/o/3bEHFp5iQRt"
+  };
+  for(const [label,url] of Object.entries(urls)){
+    s=s.replace(label,`<a href="${url}" target="_blank">${label} ↗</a>`);
+  }
+  return s;
+}
+function show(i){
+  document.querySelectorAll(".tab").forEach((b,j)=>b.classList.toggle("active",j===i));
+  const d=D[i];
+  day.innerHTML=`<div class="day">
+    <div class="dayhead"><div>
+      <div class="date" style="font-size:23px">${d[0]} <span class="muted" style="font-size:13px">${d[1]}</span></div>
+      <h2>${d[2]}</h2>
+    </div><span class="tag">${d[3]}</span></div>
+    <div>${d[4].map(x=>{
+      const [a,...rest]=x.split("｜"); return `<div class="event"><time>${a}</time><div>${linkify(rest.join("｜"))}</div></div>`;
+    }).join("")}</div>
+  </div>`;
+}
+show(0);
+
+document.querySelectorAll('.check input').forEach((x,i)=>{
+  const k='kansai-check-'+i;
+  x.checked=localStorage.getItem(k)==='1';
+  x.onchange=()=>localStorage.setItem(k,x.checked?'1':'0');
+});
+</script>
+</body>
+</html>
