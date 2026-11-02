@@ -131,7 +131,39 @@ footer{text-align:center;color:#978b82;padding:20px 15px 50px}
   .navlinks{display:flex;align-items:center;justify-content:flex-end;gap:4px}.overview,.lower{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  main{padding:25px 13px 45px}.hero{height:430px}
+  /* Mobile hero layout: keep navigation, counter and title from overlapping. */
+  .hero{
+    height:auto;min-height:560px;align-items:flex-end;
+  }
+  .nav{
+    padding:14px 16px 10px;gap:8px;flex-wrap:wrap;align-items:center;
+  }
+  .logo{font-size:20px;line-height:1.2;flex:1 1 auto;margin-right:0}
+  .nav .badge{display:none}
+  .navlinks{
+    display:flex;flex:1 1 100%;width:100%;min-width:0;
+    justify-content:flex-start;gap:0;overflow-x:auto;overflow-y:hidden;
+    white-space:nowrap;padding:4px 0 8px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .navlinks::-webkit-scrollbar{display:none}
+  .navlinks a{flex:0 0 auto;font-size:12px;margin:0 14px 0 0;padding:5px 0}
+  .heroText{width:100%;min-width:0;padding:150px 6% 30px;}
+  .elapsed-counter{
+    display:block;width:fit-content;max-width:100%;margin:0 0 16px;
+    padding:10px 12px;border-radius:12px;
+  }
+  .elapsed-label{font-size:11px!important;letter-spacing:1px}
+  .elapsed-value{
+    font-size:clamp(16px,4.6vw,22px);line-height:1.45;
+    white-space:normal;overflow-wrap:anywhere;
+  }
+  .elapsed-date{font-size:10px}
+  .heroText>div:not(.elapsed-counter){font-size:11px;letter-spacing:1.4px}
+  .hero h1{font-size:clamp(40px,11.5vw,56px);line-height:1;letter-spacing:-2px;margin:9px 0 14px;}
+  .hero p{font-size:15px;line-height:1.5}
+  .hero .route{font-size:16px;line-height:1.5;overflow-wrap:anywhere}
+  main{padding:25px 13px 45px}
   .hero h1{font-size:58px}.routeLine{min-height:125px;gap:5px}
   .city{min-width:90px;padding:10px 6px}.flight{grid-template-columns:60px 1fr}
   .flight .route{grid-column:2}.photos{grid-template-columns:1fr}
