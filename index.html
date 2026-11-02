@@ -42,6 +42,15 @@ body{
 }
 .hero p{font-weight:750;margin:5px 0;font-size:18px}
 .hero .route{font-size:20px;margin-top:13px}
+.elapsed-counter{
+  display:inline-block;margin-bottom:18px;padding:12px 17px;
+  border:1px solid rgba(255,255,255,.48);border-radius:15px;
+  background:rgba(48,25,19,.42);backdrop-filter:blur(7px);
+  text-shadow:0 1px 6px rgba(0,0,0,.35);
+}
+.elapsed-label{font-size:12px!important;letter-spacing:1.5px;opacity:.9}
+.elapsed-value{font-size:clamp(19px,3vw,27px);font-weight:850;letter-spacing:.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.elapsed-date{font-size:11px;opacity:.82;margin-top:2px}
 main{max-width:1180px;margin:auto;padding:35px 20px 60px}
 .section{margin-bottom:42px}
 .title{color:var(--red);display:flex;gap:12px;align-items:baseline;margin-bottom:16px}
@@ -142,6 +151,11 @@ footer{text-align:center;color:#978b82;padding:20px 15px 50px}
     <div class="badge">Travel · 2025</div>
   </nav>
   <div class="heroText">
+    <div class="elapsed-counter" aria-live="off">
+      <div class="elapsed-label">距离出发已经过去</div>
+      <div class="elapsed-value" id="elapsed">计算中…</div>
+      <div class="elapsed-date">从 2025.11.28 · 09:55 开始</div>
+    </div>
     <div>OSAKA · KYOTO · AUTUMN TRIP</div>
     <h1>2025 🍁 关西</h1>
     <p>11.28 — 12.03</p>
@@ -370,6 +384,21 @@ function show(i){
   </div>`;
 }
 show(0);
+
+// Count elapsed time from the departure time in the visitor's local timezone.
+const departureTime = new Date(2025, 10, 28, 9, 55, 0).getTime();
+const elapsedDisplay = document.getElementById('elapsed');
+function updateElapsed(){
+  const diff = Math.max(0, Date.now() - departureTime);
+  const totalSeconds = Math.floor(diff / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  elapsedDisplay.textContent = `${days} 天 ${String(hours).padStart(2,'0')} 小时 ${String(minutes).padStart(2,'0')} 分 ${String(seconds).padStart(2,'0')} 秒`;
+}
+updateElapsed();
+setInterval(updateElapsed, 1000);
 
 document.querySelectorAll('.check input').forEach((x,i)=>{
   const k='kansai-check-'+i;
